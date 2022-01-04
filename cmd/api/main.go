@@ -20,10 +20,18 @@ func main() {
 
 	router := http.NewServeMux()
 
-	router.HandleFunc("/", func(rw http.ResponseWriter, r *http.Request) {
+	fs := http.FileServer(http.Dir("./cmd/web/public"))
 
-		rw.Write([]byte("hello"))
+	router.HandleFunc("/api/test", func(rw http.ResponseWriter, r *http.Request) {
+
+		rw.Write([]byte(`
+		{
+			status: 200,
+			messahe:"just a test"
+			`))
 	})
+
+	router.Handle("/", fs)
 
 	http.ListenAndServe(fmt.Sprintf(":%s", PORT), router)
 }
