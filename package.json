@@ -1,5 +1,5 @@
 {
   "scripts": {
-    "heroku-postbuild": " cd cmd/web && npm install && next build"
+    "heroku-postbuild": " cd cmd/web && npm install && npm build"
   }
 }
