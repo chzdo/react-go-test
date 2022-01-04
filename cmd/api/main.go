@@ -28,6 +28,7 @@ func main() {
 		{
 			status: 200,
 			messahe:"just a test"
+		}
 			`))
 	})
 
