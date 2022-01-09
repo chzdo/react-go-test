@@ -10,7 +10,9 @@ const IndexPage = () => {
   React.useEffect(() => {
     fetch("/api/test", {
       method:"GET"
-    }).then(result => result.json()).then(jsonResult => {
+    }).then(result => result.text()).then(jsonResult => {
+        console.log(jsonResult)
+      jsonResult = JSON.parse(jsonResult)
       setStatus(jsonResult.status)
       setMessage(jsonResult.message)
     }).catch(err=> console.log(err))

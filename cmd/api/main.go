@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
@@ -24,12 +25,13 @@ func main() {
 
 	router.HandleFunc("/api/test", func(rw http.ResponseWriter, r *http.Request) {
 
-		rw.Write([]byte(`
-		{
-			status: 200,
-			messahe:"just a test"
-		}
-			`))
+		rw.Header().Set("Content-Type", "application/json")
+
+		json.NewEncoder(rw).Encode(map[string]interface{}{
+			"status":  200,
+			"message": "test",
+		})
+
 	})
 
 	router.Handle("/", fs)
